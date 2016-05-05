@@ -1,0 +1,58 @@
+Log4j2 HowTo
+=====
+
+## 1. Add Maven Dependency
+```xml
+<dependency>
+  <groupId>org.apache.logging.log4j</groupId>
+  <artifactId>log4j-core</artifactId>
+  <version>2.3</version>
+</dependency>
+```
+## 2. Configure Log4j2.xml
+Put the Log4j2.xml to  `src/main/resources`
+
+### **Log4j2.xml:**
+```xml
+<Configuration>
+    <Appenders>
+        <RollingFile name="A1" fileName="./logs/my.log" filePattern="./logs/%d{yyyy-MM-dd}.%i.log">
+            <PatternLayout pattern="[%d{yyyy-MM-dd HH:mm:ss}]  %-5p [%c{1}] %m%n"/>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="100 KB"/>
+            </Policies>
+        </RollingFile>
+        <Console name="console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%highlight{[%d{yyyy-MM-dd HH:mm:ss}]  %-5p [%c{1}] %m%n}"/>
+        </Console>
+    </Appenders>
+    <Loggers>
+        <Logger name="myLog" level="DEBUG"/>
+        <Root level="DEBUG">
+            <AppenderRef ref="A1"/>
+            <AppenderRef ref="console"/>
+        </Root>
+    </Loggers>
+</Configuration>
+```
+
+## 3. Using Log4j2
+```java
+public class myClass {
+    static final Logger log = LogManager.getLogger(FooClass.class.getName());
+    public static void myMethod() {
+        log.debug("debug message");
+        log.info("information message ");
+        log.printf(Level.DEBUG, "Format String: %s\n", strVariable);
+    }
+}
+```
+Log exception dump
+```java
+try {
+    /*code...*/
+} catch (IOException e) {
+    log.error("I/O:" + e.getMessage());
+    log.debug(e.getMessage(), e);
+}
+```
