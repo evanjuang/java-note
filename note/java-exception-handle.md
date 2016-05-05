@@ -2,7 +2,7 @@
 =====
 
 ---
-## **例外處理設計**
+## *例外處理設計*
 ### 1. 低階層的例外轉成高階層所理解的例外
 ```java
 public void saveProperty() throws IOException
