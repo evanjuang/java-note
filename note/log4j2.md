@@ -15,8 +15,13 @@ Put the Log4j2.xml to  `src/main/resources`
 ### **Log4j2.xml:**
 ```xml
 <Configuration>
+    <!--variable-->
+    <Properties>
+        <Property name="LOG_HOME">./logs</Property>>
+    </Properties>
+    <!--output setting-->
     <Appenders>
-        <RollingFile name="A1" fileName="./logs/my.log" filePattern="./logs/%d{yyyy-MM-dd}.%i.log">
+        <RollingFile name="file" fileName="${LOG_HOME}/test.log" filePattern="${LOG_HOME}/test-%d{yyyy-MM-dd}.%i.log">
             <PatternLayout pattern="[%d{yyyy-MM-dd HH:mm:ss}]  %-5p [%c{1}] %m%n"/>
             <Policies>
                 <SizeBasedTriggeringPolicy size="100 KB"/>
@@ -26,10 +31,10 @@ Put the Log4j2.xml to  `src/main/resources`
             <PatternLayout pattern="%highlight{[%d{yyyy-MM-dd HH:mm:ss}]  %-5p [%c{1}] %m%n}"/>
         </Console>
     </Appenders>
+    <!--logger setting-->
     <Loggers>
-        <Logger name="myLog" level="DEBUG"/>
         <Root level="DEBUG">
-            <AppenderRef ref="A1"/>
+            <AppenderRef ref="file"/>
             <AppenderRef ref="console"/>
         </Root>
     </Loggers>
@@ -38,9 +43,9 @@ Put the Log4j2.xml to  `src/main/resources`
 
 ## 3. Using Log4j2
 ```java
-public class myClass {
+public class FooClass {
     static final Logger log = LogManager.getLogger(FooClass.class.getName());
-    public static void myMethod() {
+    public static void bar() {
         log.debug("debug message");
         log.info("information message ");
         log.printf(Level.DEBUG, "Format String: %s\n", strVariable);
