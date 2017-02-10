@@ -4,35 +4,37 @@
 pom.xml
 ```xml
 <build>
-<plugin>
-  <groupId>org.apache.maven.plugins</groupId>
-  <artifactId>maven-jar-plugin</artifactId>
-  <configuration>
-    <archive>
-      <manifest>
-        <mainClass>com.test.your.Main</mainClass>
-        <addClasspath>true</addClasspath>
-        <classpathPrefix>lib/</classpathPrefix>
-      </manifest>
-    </archive>
-  </configuration>
-</plugin>
-<plugin>
-  <groupId>org.apache.maven.plugins</groupId>
-  <artifactId>maven-dependency-plugin</artifactId>
-  <executions>
-    <execution>
-      <id>copy-dependencies</id>
-      <phase>package</phase>
-      <goals>
-        <goal>copy-dependencies</goal>
-      </goals>
-      <configuration>
-        <outputDirectory>${project.build.directory}/lib</outputDirectory>
-      </configuration>
-    </execution>
-  </executions>
-</plugin>
+  <plugins>
+    <plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-jar-plugin</artifactId>
+    <configuration>
+      <archive>
+        <manifest>
+          <mainClass>com.test.your.Main</mainClass>
+          <addClasspath>true</addClasspath>
+          <classpathPrefix>lib/</classpathPrefix>
+        </manifest>
+      </archive>
+    </configuration>
+    </plugin>
+    <plugin>
+      <groupId>org.apache.maven.plugins</groupId>
+      <artifactId>maven-dependency-plugin</artifactId>
+      <executions>
+        <execution>
+          <id>copy-dependencies</id>
+          <phase>package</phase>
+          <goals>
+            <goal>copy-dependencies</goal>
+          </goals>
+          <configuration>
+            <outputDirectory>${project.build.directory}/lib</outputDirectory>
+          </configuration>
+        </execution>
+     </executions>
+    </plugin>
+  </plugins>
 </build>
 ```
 
@@ -40,6 +42,7 @@ pom.xml
 pom.xml
 ```xml
 <build>
+<plugins>
   <plugin>
     <groupId>org.apache.maven.plugins</groupId>
     <artifactId>maven-assembly-plugin</artifactId>
@@ -65,6 +68,7 @@ pom.xml
       </execution>
     </executions>
   </plugin>
+</plugins>
 </build>
 ```
 
@@ -72,6 +76,7 @@ pom.xml
 pom.xml
 ```xml
 <build>
+<plugins>
   <plugin>
     <groupId>org.apache.maven.plugins</groupId>
     <artifactId>maven-shade-plugin</artifactId>
@@ -91,5 +96,6 @@ pom.xml
       </execution>
     </executions>
   </plugin>
+</plugins>
 </build>
 ```
