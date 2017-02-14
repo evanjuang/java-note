@@ -18,34 +18,36 @@
 ### Deplopy to Nexus
 1. Add Nexus login information in maven setting file (`{user dir}/.m2/settings.xml`)
 ```xml
-<settings>
-  <servers>   
-    <server>    
-      <id>snapshots</id>    
-      <username>admin</username>    
-      <password>admin123</password>    
-    </server>       
-  </servers>
-</settings>
+  <settings>
+    <servers>
+      <server>
+        <id>snapshots</id>
+        <username>admin</username>
+        <password>admin123</password>
+      </server>
+    </servers>
+  </settings>
 ```
+
 2. In project POM file, add deploy setting<br>
-The `<id>` is reference to `settings.xml`
+  The `<id>` is reference to `settings.xml`
 ```xml
-<project>
-  <distributionManagement>
-    <repository>
-      <id>snapshots</id>
-      <name>Internal Snapshots</name>
-      <url>{user nexus host ip}</url>
-    </repository>
-  </distributionManagement>
-</project>
+  <project>
+    <distributionManagement>
+      <repository>
+        <id>snapshots</id>
+        <name>Internal Snapshots</name>
+        <url>{user nexus host ip}</url>
+      </repository>
+    </distributionManagement>
+  </project>
 ```
-3. deploy<br>
-`mvn deploy`
+
+3. deploy
+`mvn deploy``
 
 ### Download from Nexus
-1. In project POM file, add repository setting<br>
+1. In project POM file, add repository setting
 ```xml
 <project>
  <repositories>
