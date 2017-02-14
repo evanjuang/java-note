@@ -17,7 +17,8 @@
 
 ### Deplopy to Nexus
 1. Add Nexus login information in maven setting file (`{user dir}/.m2/settings.xml`)
-```xml
+
+  ```xml
   <settings>
     <servers>
       <server>
@@ -27,12 +28,12 @@
       </server>
     </servers>
   </settings>
-```
-
+  ```
 
 2. In project POM file, add deploy setting<br>
   The `<id>` is reference to `settings.xml`
-```xml
+
+  ```xml
   <project>
     <distributionManagement>
       <repository>
@@ -42,33 +43,34 @@
       </repository>
     </distributionManagement>
   </project>
-```
+  ```
 
 
 3. Deploy
-`mvn deploy`
+  `mvn deploy`
 
 ### Download from Nexus
 1. In project POM file, add repository setting
-```xml
-<project>
- <repositories>
-    <repository>
-      <id>nexus</id>
+
+  ```xml
+  <project>
+    <repositories>
+      <repository>
+        <id>nexus</id>
         <name>nexus</name>
         <url>{your nexus repository ip}</url>
         <releases><enabled>true</enabled></releases>
         <snapshots><enabled>true</enabled></snapshots>
-    </repository>
-  </repositories>
+      </repository>
+    </repositories>
 
-  <dependencies>
-    <dependency>
-      <groupId>com.test</groupId>
-      <artifactId>nexus-test-util</artifactId>
-      <version>0.0.1-SNAPSHOT</version>
-    </dependency>
-  </dependencies>
+    <dependencies>
+      <dependency>
+        <groupId>com.test</groupId>
+        <artifactId>nexus-test-util</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+      </dependency>
+    </dependencies>
   
-</project>
-```
+  </project>
+  ```
