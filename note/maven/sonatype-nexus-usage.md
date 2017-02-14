@@ -27,7 +27,7 @@
       </server>
     </servers>
   </settings>
-```
+```<br>
 
 2. In project POM file, add deploy setting<br>
   The `<id>` is reference to `settings.xml`
@@ -41,7 +41,7 @@
       </repository>
     </distributionManagement>
   </project>
-```
+```<br>
 
 3. deploy
 `mvn deploy``
