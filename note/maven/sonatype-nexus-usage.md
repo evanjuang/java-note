@@ -38,14 +38,14 @@
       <repository>
         <id>snapshots</id>
         <name>Internal Snapshots</name>
-        <url>{user nexus host ip}</url>
+        <url>{your nexus host ip}</url>
       </repository>
     </distributionManagement>
   </project>
 ```
 
 
-3. deploy
+3. Deploy
 `mvn deploy`
 
 ### Download from Nexus
@@ -56,7 +56,7 @@
     <repository>
       <id>nexus</id>
         <name>nexus</name>
-        <url>{user nexus repository ip}</url>
+        <url>{your nexus repository ip}</url>
         <releases><enabled>true</enabled></releases>
         <snapshots><enabled>true</enabled></snapshots>
     </repository>
