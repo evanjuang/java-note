@@ -28,16 +28,43 @@
   </servers>
 </settings>
 ```
-
-2. In project POM file, add deploy setting
+2. In project POM file, add deploy setting<br>
+The `<id>` is reference to `settings.xml`
 ```xml
 <project>
   <distributionManagement>
     <repository>
       <id>snapshots</id>
       <name>Internal Snapshots</name>
-      <url>http://10.6.224.195:8081/repository/sw3-cmf-snapshot/</url>
+      <url>{user nexus host ip}</url>
     </repository>
   </distributionManagement>
+</project>
+```
+3. deploy<br>
+`mvn deploy`
+
+### Download from Nexus
+1. In project POM file, add repository setting<br>
+```xml
+<project>
+ <repositories>
+    <repository>
+      <id>nexus</id>
+        <name>nexus</name>
+        <url>{user nexus repository ip}</url>
+        <releases><enabled>true</enabled></releases>
+        <snapshots><enabled>true</enabled></snapshots>
+    </repository>
+  </repositories>
+
+  <dependencies>
+    <dependency>
+      <groupId>com.test</groupId>
+      <artifactId>nexus-test-util</artifactId>
+      <version>0.0.1-SNAPSHOT</version>
+    </dependency>
+  </dependencies>
+  
 </project>
 ```
