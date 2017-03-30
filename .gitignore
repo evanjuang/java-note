@@ -1,0 +1,3 @@
+*.prefs
+pattern/builder/builder-test/.project
+*.classpath
