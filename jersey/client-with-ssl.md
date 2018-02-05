@@ -1,12 +1,12 @@
 ```java
-    private Client simpleSSLClient() {
-        ClientConfig config = new ClientConfig();
-        return ClientBuilder.newBuilder()
-                            .withConfig(config)
-                            .hostnameVerifier(SSLClient.createHostNameVerifier())
-                            .sslContext(SSLClient.createSSLContext())
-                            .build();
-    }
+private Client simpleSSLClient() {
+    ClientConfig config = new ClientConfig();
+    return ClientBuilder.newBuilder()
+                        .withConfig(config)
+                        .hostnameVerifier(SSLClient.createHostNameVerifier())
+                        .sslContext(SSLClient.createSSLContext())
+                        .build();
+}
 ```
 
 * SSL Context
