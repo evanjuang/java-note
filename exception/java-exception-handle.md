@@ -211,3 +211,43 @@ public User readUser(String name) throws ReadUserException {
 - - -
 ### 7. One method, one try statement
 如果函式太多try statement，表示做太多事，應拆開。
+
+---
+### 8. Prefer Specific Exceptions
+```java
+public void doNotDoThis() throws Exception { ... } (X)
+public void doThis() throws NumberFormatException { ... } (O)
+```
+---
+### 9. Don’t log and throw
+It will write multiple error messages for the same exception.
+```java
+try {
+	new Long("xyz");
+} catch (NumberFormatException e) {
+	log.error(e); // duplicate message
+	throw e;
+}
+```
+If need add more information, wrap with custom excepttion
+```java
+public void wrapException(String input) throws MyBusinessException {
+	try {
+		// do something
+	} catch (NumberFormatException e) {
+		throw new MyBusinessException("A message that describes the error.", e);
+	}
+}
+```
+---
+### 10.Wrap the Exception Without Consuming it
+```java
+public void wrapException(String input) throws MyBusinessException {
+	try {
+		// do something
+	} catch (NumberFormatException e) {
+        // make sure to set the original exception as the cause.
+		throw new MyBusinessException("A message that describes the error.", e); 
+	}
+}
+```
